@@ -1,5 +1,5 @@
 extends KinematicBody2D
-export (int) var SPEED = 100
+export (int) var SPEED = 50
 var moveDir = Vector2.ZERO
 enum states { IDLE, MOVE }
 var state = states.IDLE
@@ -19,12 +19,18 @@ func _process(delta):
 		states.IDLE:
 			$AnimationPlayer.play("idle")
 		states.MOVE:
-			$AnimationPlayer.play("walk")
-			if moveDir.x > 0:
-				$Sprite.flip_h = false
-			elif moveDir.x < 0:
-				$Sprite.flip_h = true
+			set_move_anim()
 			move()
+
+func set_move_anim():
+	if moveDir.y > 0:
+		$AnimationPlayer.play("walk_down")
+	elif moveDir.y < 0:
+		$AnimationPlayer.play("walk_up")
+	elif moveDir.x < 0:
+		$AnimationPlayer.play("walk_left")
+	elif moveDir.x > 0:
+		$AnimationPlayer.play("walk_right")
 
 func get_inputs():
 	var move_up = Input.is_action_pressed("move_up");
