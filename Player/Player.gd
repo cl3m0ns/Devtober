@@ -7,6 +7,7 @@ var moveDir = Vector2.ZERO
 var lastmoveDir = Vector2.ZERO
 
 enum facings { up, down, left, right }
+var facingStrings = ["up", "down", "left", "right"]
 enum {
 	IDLE,
 	MOVE
@@ -18,11 +19,9 @@ var NEXT_STATE = IDLE
 var isDead = false
 var alpha = 1
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	idle_state()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
 	state = NEXT_STATE
 	match state:
@@ -31,8 +30,12 @@ func _physics_process(delta):
 		MOVE:
 			move_state()
 
-func set_last_moveDir():
+func set_last_move_dir():
 	lastmoveDir = moveDir;
+
+func update_anim(animName):
+	var anim = animName + facingStrings[FACING]
+	$AnimationPlayer.play(anim)
 
 func get_next_state():
 	var right = Input.is_action_pressed("move_right")
@@ -51,17 +54,9 @@ func get_next_state():
 ###### IDLE STATE #######################################
 #########################################################
 func idle_state():
-	match FACING:
-		facings.right:
-			$AnimationPlayer.play("idle_right")
-		facings.left:
-			$AnimationPlayer.play("idle_left")
-		facings.up:
-			$AnimationPlayer.play("idle_up")
-		facings.down:
-			$AnimationPlayer.play("idle_down")
+	update_anim("idle_")
 	
-	set_last_moveDir()
+	set_last_move_dir()
 	get_next_state()
 #########################################################
 
@@ -72,8 +67,8 @@ func idle_state():
 func move_state():
 	get_movement_inputs()
 	movement_loop()
-	update_walk_sprite()
-	set_last_moveDir()
+	update_move_sprite()
+	set_last_move_dir()
 	get_next_state()
 
 func movement_loop():
@@ -89,26 +84,24 @@ func get_movement_inputs():
 	moveDir.x = -int(move_left) + int(move_right)
 	moveDir.y = -int(move_up) + int(move_down)
 
-func update_walk_sprite():
+func update_move_sprite():
 	var movingHorizontal = false
 	var movingVertical = false
 	if lastmoveDir.x != 0:movingHorizontal = true
 	if lastmoveDir.y != 0:movingVertical = true
 	
 	if moveDir.x < 0 && !movingVertical:
-		$AnimationPlayer.play("walk_left")
 		FACING = facings.left
 	elif moveDir.x > 0 && !movingVertical:
-		$AnimationPlayer.play("walk_right")
 		FACING = facings.right
 	elif moveDir.y > 0 && !movingHorizontal:
-		$AnimationPlayer.play("walk_down")
 		FACING = facings.down
 	elif moveDir.y < 0 && !movingHorizontal:
-		$AnimationPlayer.play("walk_up")
 		FACING = facings.up
 	elif moveDir.y == 0 && moveDir.x == 0:
 		NEXT_STATE = IDLE
 		PREV_STATE = state
+	
+	update_anim("walk_")
 	
 ###########################################################
