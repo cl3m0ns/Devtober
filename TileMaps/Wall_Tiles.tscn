@@ -10,7 +10,7 @@
 0/region = Rect2( 0, 0, 32, 80 )
 0/tile_mode = 1
 0/autotile/bitmask_mode = 0
-0/autotile/bitmask_flags = [ Vector2( 0, 0 ), 69, Vector2( 0, 1 ), 321, Vector2( 0, 2 ), 69, Vector2( 0, 3 ), 65, Vector2( 0, 4 ), 65, Vector2( 0, 5 ), 321, Vector2( 0, 6 ), 256, Vector2( 0, 7 ), 260, Vector2( 0, 8 ), 260, Vector2( 0, 9 ), 4, Vector2( 1, 0 ), 261, Vector2( 1, 1 ), 324, Vector2( 1, 2 ), 5, Vector2( 1, 5 ), 320, Vector2( 1, 6 ), 320, Vector2( 1, 7 ), 325, Vector2( 1, 8 ), 325, Vector2( 1, 9 ), 5, Vector2( 2, 0 ), 1, Vector2( 2, 1 ), 64, Vector2( 2, 2 ), 5, Vector2( 2, 5 ), 320, Vector2( 2, 6 ), 320, Vector2( 2, 7 ), 325, Vector2( 2, 8 ), 325, Vector2( 2, 9 ), 5, Vector2( 3, 0 ), 4, Vector2( 3, 1 ), 256, Vector2( 3, 2 ), 261, Vector2( 3, 3 ), 260, Vector2( 3, 4 ), 260, Vector2( 3, 5 ), 324, Vector2( 3, 6 ), 64, Vector2( 3, 7 ), 65, Vector2( 3, 8 ), 65, Vector2( 3, 9 ), 1 ]
+0/autotile/bitmask_flags = [ Vector2( 0, 0 ), 69, Vector2( 0, 1 ), 321, Vector2( 0, 2 ), 69, Vector2( 0, 3 ), 65, Vector2( 0, 4 ), 65, Vector2( 0, 5 ), 321, Vector2( 0, 6 ), 325, Vector2( 0, 7 ), 325, Vector2( 0, 8 ), 325, Vector2( 0, 9 ), 5, Vector2( 1, 0 ), 261, Vector2( 1, 1 ), 324, Vector2( 1, 2 ), 5, Vector2( 1, 5 ), 320, Vector2( 1, 6 ), 325, Vector2( 1, 7 ), 325, Vector2( 1, 8 ), 325, Vector2( 1, 9 ), 5, Vector2( 2, 0 ), 1, Vector2( 2, 1 ), 64, Vector2( 2, 2 ), 5, Vector2( 2, 5 ), 320, Vector2( 2, 6 ), 325, Vector2( 2, 7 ), 325, Vector2( 2, 8 ), 325, Vector2( 2, 9 ), 5, Vector2( 3, 0 ), 4, Vector2( 3, 1 ), 256, Vector2( 3, 2 ), 261, Vector2( 3, 3 ), 260, Vector2( 3, 4 ), 260, Vector2( 3, 5 ), 324, Vector2( 3, 6 ), 325, Vector2( 3, 7 ), 325, Vector2( 3, 8 ), 325, Vector2( 3, 9 ), 5 ]
 0/autotile/icon_coordinate = Vector2( 0, 0 )
 0/autotile/tile_size = Vector2( 8, 8 )
 0/autotile/spacing = 0
@@ -22,6 +22,25 @@
 0/navigation_offset = Vector2( 0, 0 )
 0/shapes = [  ]
 0/z_index = 0
+1/name = "Walls_2"
+1/texture = ExtResource( 1 )
+1/tex_offset = Vector2( 0, 0 )
+1/modulate = Color( 1, 1, 1, 1 )
+1/region = Rect2( 32, 0, 32, 80 )
+1/tile_mode = 1
+1/autotile/bitmask_mode = 0
+1/autotile/bitmask_flags = [ Vector2( 0, 0 ), 69, Vector2( 0, 1 ), 321, Vector2( 0, 2 ), 69, Vector2( 0, 3 ), 65, Vector2( 0, 4 ), 65, Vector2( 0, 5 ), 321, Vector2( 0, 6 ), 325, Vector2( 0, 7 ), 325, Vector2( 0, 8 ), 325, Vector2( 0, 9 ), 325, Vector2( 1, 0 ), 261, Vector2( 1, 1 ), 324, Vector2( 1, 2 ), 5, Vector2( 1, 5 ), 320, Vector2( 1, 6 ), 325, Vector2( 1, 7 ), 69, Vector2( 1, 8 ), 321, Vector2( 1, 9 ), 325, Vector2( 2, 0 ), 1, Vector2( 2, 1 ), 64, Vector2( 2, 2 ), 5, Vector2( 2, 5 ), 320, Vector2( 2, 6 ), 325, Vector2( 2, 7 ), 261, Vector2( 2, 8 ), 324, Vector2( 2, 9 ), 325, Vector2( 3, 0 ), 4, Vector2( 3, 1 ), 256, Vector2( 3, 2 ), 261, Vector2( 3, 3 ), 260, Vector2( 3, 4 ), 260, Vector2( 3, 5 ), 324, Vector2( 3, 6 ), 325, Vector2( 3, 7 ), 325, Vector2( 3, 8 ), 325, Vector2( 3, 9 ), 325 ]
+1/autotile/icon_coordinate = Vector2( 1, 5 )
+1/autotile/tile_size = Vector2( 8, 8 )
+1/autotile/spacing = 0
+1/autotile/occluder_map = [  ]
+1/autotile/navpoly_map = [  ]
+1/autotile/priority_map = [  ]
+1/autotile/z_index_map = [  ]
+1/occluder_offset = Vector2( 0, 0 )
+1/navigation_offset = Vector2( 0, 0 )
+1/shapes = [  ]
+1/z_index = 0
 
 [node name="Wall_Tiles" type="TileMap"]
 tile_set = SubResource( 1 )
