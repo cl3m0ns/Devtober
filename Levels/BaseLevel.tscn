@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
-[ext_resource path="res://TileMaps/Ground_Tiles.tscn" type="PackedScene" id=2]
+[ext_resource path="res://TileMaps/Border_Tiles.tscn" type="PackedScene" id=2]
+[ext_resource path="res://TileMaps/Wall_Tiles.tscn" type="PackedScene" id=3]
+[ext_resource path="res://TileMaps/Ground_Tiles.tscn" type="PackedScene" id=4]
 
 [node name="TestWorld" type="Node2D"]
 
@@ -11,4 +13,8 @@ z_index = 10
 
 [node name="Tiles" type="Node" parent="."]
 
-[node name="Ground_Tiles" parent="Tiles" instance=ExtResource( 2 )]
+[node name="Border_Tiles" parent="Tiles" instance=ExtResource( 2 )]
+
+[node name="Wall_Tiles" parent="Tiles" instance=ExtResource( 3 )]
+
+[node name="Ground_Tiles" parent="Tiles" instance=ExtResource( 4 )]
