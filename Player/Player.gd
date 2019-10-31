@@ -19,7 +19,13 @@ var NEXT_STATE = IDLE
 var isDead = false
 var alpha = 1
 
-export (int) var character_sprite_number = 2;
+enum CharacterSprite { 
+	CoolName,
+	Sprite2,
+	ILoveCaptainMarvel
+}
+export( CharacterSprite ) var sprite_type =  CharacterSprite.CoolName 
+
 var sprite_per_character = 12;
 
 func _ready():
@@ -45,10 +51,10 @@ func update_anim_frames():
 			var frames = [0,1,2,3]
 			for frame in frames:
 				var current_val = animation.track_get_key_value ( idx, frame ) 
-				animation.track_set_key_value(idx, frame, current_val + (character_sprite_number * sprite_per_character))
+				animation.track_set_key_value(idx, frame, current_val + (sprite_type * sprite_per_character))
 		else:
 			var current_val = animation.track_get_key_value ( idx, 0 ) 
-			animation.track_set_key_value(idx, 0, current_val + (character_sprite_number * sprite_per_character))
+			animation.track_set_key_value(idx, 0, current_val + (sprite_type * sprite_per_character))
 
 func set_last_move_dir():
 	lastmoveDir = moveDir;
