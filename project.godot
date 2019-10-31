@@ -18,6 +18,10 @@ _global_script_class_icons={
 config/name="Devtober"
 config/icon="res://icon.png"
 
+[autoload]
+
+global="*res://Globals/globals.gd"
+
 [display]
 
 window/size/width=350

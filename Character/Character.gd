@@ -2,16 +2,18 @@ extends KinematicBody2D
 
 # Declare member variables here
 export (int) var speed = 50
-var TYPE = "PLAYER"
+var TYPE = "NPC"
 var moveDir = Vector2.ZERO
 var lastmoveDir = Vector2.ZERO
 
 enum facings { up, down, left, right }
 var facingStrings = ["up", "down", "left", "right"]
+
 enum {
 	IDLE,
 	MOVE
 }
+
 var FACING = facings.right
 var state
 var PREV_STATE
@@ -22,14 +24,6 @@ var alpha = 1
 func _ready():
 	idle_state()
 
-func _physics_process(delta):
-	state = NEXT_STATE
-	match state:
-		IDLE:
-			idle_state()
-		MOVE:
-			move_state()
-
 func set_last_move_dir():
 	lastmoveDir = moveDir;
 
@@ -38,17 +32,7 @@ func update_anim(animName):
 	$AnimationPlayer.play(anim)
 
 func get_next_state():
-	var right = Input.is_action_pressed("move_right")
-	var left = Input.is_action_pressed("move_left")
-	var up = Input.is_action_pressed("move_up")
-	var down = Input.is_action_pressed("move_down")
-	
-	if right || left || up || down:
-		NEXT_STATE = MOVE
-	else:
-		NEXT_STATE = IDLE
-
-
+	NEXT_STATE = global.choose([MOVE, IDLE])
 
 #########################################################
 ###### IDLE STATE #######################################
@@ -73,13 +57,13 @@ func move_state():
 
 func movement_loop():
 	var motion = moveDir.normalized() * speed
-	move_and_slide(motion, Vector2(0,0))
+	move_and_slide(motion, Vector2.ZERO)
 
 func get_movement_inputs():
-	var move_up = Input.is_action_pressed("move_up");
-	var move_down = Input.is_action_pressed("move_down");
-	var move_right = Input.is_action_pressed("move_right");
-	var move_left = Input.is_action_pressed("move_left");
+	var move_up = global.choose([1, 0]);
+	var move_down = global.choose([1, 0]);
+	var move_right = global.choose([1, 0]);
+	var move_left = global.choose([1, 0]);
 	
 	moveDir.x = -int(move_left) + int(move_right)
 	moveDir.y = -int(move_up) + int(move_down)
@@ -103,5 +87,4 @@ func update_move_sprite():
 		PREV_STATE = state
 	
 	update_anim("walk_")
-	
 ###########################################################

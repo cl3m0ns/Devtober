@@ -19,7 +19,11 @@ var NEXT_STATE = IDLE
 var isDead = false
 var alpha = 1
 
+export (int) var character_sprite_number = 2;
+var sprite_per_character = 12;
+
 func _ready():
+	update_anim_frames()
 	idle_state()
 
 func _physics_process(delta):
@@ -29,6 +33,22 @@ func _physics_process(delta):
 			idle_state()
 		MOVE:
 			move_state()
+
+func update_anim_frames():
+	var anims_list = $AnimationPlayer.get_animation_list()
+	for anim in anims_list:
+		var animation = $AnimationPlayer.get_animation(anim)
+		var idx = animation.find_track("Sprite:frame")
+		var anim_frames = animation.track_get_key_count(idx)
+		
+		if anim_frames == 4:
+			var frames = [0,1,2,3]
+			for frame in frames:
+				var current_val = animation.track_get_key_value ( idx, frame ) 
+				animation.track_set_key_value(idx, frame, current_val + (character_sprite_number * sprite_per_character))
+		else:
+			var current_val = animation.track_get_key_value ( idx, 0 ) 
+			animation.track_set_key_value(idx, 0, current_val + (character_sprite_number * sprite_per_character))
 
 func set_last_move_dir():
 	lastmoveDir = moveDir;
@@ -73,7 +93,7 @@ func move_state():
 
 func movement_loop():
 	var motion = moveDir.normalized() * speed
-	move_and_slide(motion, Vector2(0,0))
+	move_and_slide(motion, Vector2.ZERO)
 
 func get_movement_inputs():
 	var move_up = Input.is_action_pressed("move_up");
